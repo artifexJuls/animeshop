@@ -1,0 +1,20 @@
+<div class="class section" style="width:20%;background-color:black;border:1px solid white">
+            <form style="display: flex; justify-content: center; align-items: center; padding-top:20px; margin:10px" action="{% url 'search' %}" method="GET">
+                <input
+                    name="query"
+                    type="search"
+                    class="form-control rounded"
+                    placeholder="Пошук"
+                    aria-label="Search"
+                    aria-describedby="search-addon"
+                />
+                <input type="submit" value="Пошук" class="btn btn-outline-primary">
+            </form>
+            <nav>
+                <ul>
+                    {% for tag in tags %}
+                        <li style="color:#db3545"><a href="{% url 'search' %}?query={{ tag.tagName }}">{{ tag.tagName }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+</div>

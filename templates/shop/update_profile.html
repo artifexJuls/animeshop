@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+     <title>Heaven</title>
+
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <link rel="stylesheet" href="{% static 'shop/css/bootstrap.min.css' %}">
+     <link rel="stylesheet" href="{% static 'shop/css/font-awesome.min.css' %}">
+     <link rel="stylesheet" href="{% static 'shop/css/aos.css' %}">
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="{% static 'shop/css/tooplate-gymso-style.ss' %}">
+
+</head>
+<body data-spy="scroll" data-target="#navbarNav" data-offset="50">
+
+    <!-- MENU BAR -->
+{% include 'shop/nav.html' %}
+
+{% if user.is_authenticated %}
+    <div class="container" style="text-align:center; padding-top: 50px">
+      <div class="container mt-5">
+        <h2>Оновити дані акаунта</h2>
+        <form class="form" method="POST" role="form" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+      </div>
+    {% else %}
+      <div class="container mt-5">
+        <form class="form-inline my-2 my-lg-0" method="POST" role="form" action="{% url 'blog_login' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <input type="text" name="username" placeholder="Username" class="form-control mr-sm-2">
+          </div>
+          <div class="form-group">
+            <input type="password" name="password" placeholder="Password" class="form-control mr-sm-2">
+          </div>
+          <button type="submit" class="btn btn-primary my-2 my-sm-0">Sign in</button>
+          <a href="{% url 'signup' %}" class="btn btn-primary ml-2 my-2 my-sm-0">Sign up</a>
+        </form>
+      </div>
+    </div>
+{% endif %}
+
+{% include 'shop/footer.html' %}
+
+     <!-- SCRIPTS -->
+     <script src="{% static 'shop/js/jquery.min.js' %}"></script>
+     <script src="{% static 'shop/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'shop/js/aos.js' %}"></script>
+     <script src="{% static 'shop/js/smoothscroll.js' %}"></script>
+     <script src="{% static 'shop/js/custom.js' %}"></script>
+
+</body>
+</html>

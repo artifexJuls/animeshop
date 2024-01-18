@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+     <title>Heaven</title>
+
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <link rel="stylesheet" href="{% static 'shop/css/bootstrap.min.css' %}">
+     <link rel="stylesheet" href="{% static 'shop/css/font-awesome.min.css' %}">
+     <link rel="stylesheet" href="{% static 'shop/css/aos.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="{% static 'shop/css/tooplate-gymso-style.css' %}">
+
+</head>
+<body data-spy="scroll" data-target="#navbarNav" data-offset="50">
+
+    <!-- MENU BAR -->
+{% include 'shop/nav.html' %}
+
+
+<div class="container mt-5" style="padding-top: 100px;text-align: center">
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h2>Order Confirmation {{ order.id }}</h2>
+        </div>
+            <div style="display:flex; justify-content:center;align-content:center" class="alert alert-success mt-4" role="alert">
+                Ваша замовлення підтверджено. Очікуйте дзвінка!
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'shop/footer.html' %}
+
+     <!-- SCRIPTS -->
+    <!-- Bootstrap JS and Popper.js scripts (for Bootstrap features) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+     <script src="{% static 'shop/js/jquery.min.js' %}"></script>
+     <script src="{% static 'shop/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'shop/js/aos.js' %}"></script>
+     <script src="{% static 'shop/js/smoothscroll.js' %}"></script>
+     <script src="{% static 'shop/js/custom.js' %}"></script>
+
+</body>
+</html>

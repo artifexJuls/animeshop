@@ -1,0 +1,12 @@
+/* styles.css */
+.row {
+    flex: 0 0 calc(33.33% - 20px); /* Adjust the width as needed */
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        transition: none;
+    }
+}

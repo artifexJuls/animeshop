@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+     <title>Heaven</title>
+
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <link rel="stylesheet" href="{% static 'shop/css/bootstrap.min.css' %}">
+     <link rel="stylesheet" href="{% static 'shop/css/font-awesome.min.css' %}">
+     <link rel="stylesheet" href="{% static 'shop/css/aos.css' %}">
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="{% static 'shop/css/tooplate-gymso-style.css' %}">
+
+</head>
+<body data-spy="scroll" data-target="#navbarNav" data-offset="50">
+
+    <!-- MENU BAR -->
+ {% include 'shop/nav.html' %}
+
+<div style="padding-top:5%; margin:5%; text-align:center">
+    {% if user.is_authenticated %}
+        <div class="alert alert-info" role="alert">
+            You are already logged in.
+        </div>
+    {% else %}
+    <div class="navbar-form navbar-right" style="border: 1px solid black">
+        <h2>Login</h2>
+<form method="post" action="{% url 'blog_login' %}" style="display: inline; margin: 50px">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Username" class="form-control">
+    <input type="password" name="password" placeholder="Password" class="form-control">
+    <button type="submit" class="btn custom-btn bordered mt-3" style="width:100%; background-color: black">Вхід</button>
+</form>
+    </div>
+        <hr>
+        <h2>Registration</h2>
+        <form style="border: 1px solid black" method="POST" action="{% url 'signup' %}">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="nickname" class="form-label">Username:</label>
+                <input type="text" name="nickname" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone:</label>
+                <input type="tel" name="phone" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="birth_date" class="form-label">Birthday:</label>
+                <input type="date" name="birth_date" class="form-control" required>
+            </div>
+
+            <button STYLE="width:100%;background-color: black" type="submit" class="btn custom-btn bordered mt-3">Sign Up</button>
+        </form>
+    {% endif %}
+</div>
+
+        {% include 'shop/footer.html' %}
+
+     <!-- SCRIPTS -->
+     <script src="{% static 'shop/js/jquery.min.js' %}"></script>
+     <script src="{% static 'shop/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'shop/js/aos.js' %}"></script>
+     <script src="{% static 'shop/js/smoothscroll.js' %}"></script>
+     <script src="{% static 'shop/js/custom.js' %}"></script>
+
+</body>
+</html>

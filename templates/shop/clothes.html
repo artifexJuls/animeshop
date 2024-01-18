@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+     <title>Heaven</title>
+
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <link rel="stylesheet" href="{% static 'shop/css/bootstrap.min.css' %}">
+     <link rel="stylesheet" href="{% static 'shop/css/font-awesome.min.css' %}">
+     <link rel="stylesheet" href="{% static 'shop/css/aos.css' %}">
+     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="{% static 'shop/css/tooplate-gymso-style.css' %}">
+
+</head>
+<body data-spy="scroll" data-target="#navbarNav" data-offset="50" style="background-color:black">
+
+    <!-- MENU BAR -->
+    {% include 'shop/nav.html' %}
+<div style="display: flex; width: 100%;">
+    <div style="display: flex; width: 100%;">
+        <!-- card -->
+        {% include 'shop/cards.html' %}
+            <!-- sidebar -->
+        {% include 'shop/sidebar.html' %}
+    </div>
+</div>
+
+    <!-- footer -->
+    {% include 'shop/footer.html' %}
+     <!-- SCRIPTS -->
+     <script src="{% static 'shop/js/jquery.min.js' %}"></script>
+     <script src="{% static 'shop/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'shop/js/aos.js' %}"></script>
+     <script src="{% static 'shop/js/smoothscroll.js' %}"></script>
+     <script src="{% static 'shop/js/custom.js' %}"></script>
+
+</body>
+</html>

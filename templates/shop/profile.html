@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load custom_filters %}
+     <title>Heaven</title>
+
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <link rel="stylesheet" href="{% static 'shop/css/bootstrap.min.css' %}">
+     <link rel="stylesheet" href="{% static 'shop/css/font-awesome.min.css' %}">
+     <link rel="stylesheet" href="{% static 'shop/css/aos.css' %}">
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="{% static 'shop/css/tooplate-gymso-style.css' %}">
+
+</head>
+<body data-spy="scroll" data-target="#navbarNav" data-offset="50">
+
+    <!-- MENU BAR -->
+{% include 'shop/nav.html' %}
+
+{% if user.is_authenticated %}
+<div style="display: flex; justify-content: space-around; padding-top: 80px;">
+
+    <!-- Left container  -->
+    <div style="flex: 1;border: 1px solid black; padding: 40px;background-color: black; color: white">
+        <div class="container" style="text-align: center;">
+            <h1>Profile</h1>
+            <img class="img-responsive" src="{{ user_profile.avatar.url }}" alt="Avatar" width="300" height="300">
+            <h2>Нік:</h2><p>{{ user_profile.user }}</p>
+            <h2>Прізвище:</h2><p>{{ user_profile.first_name }}</p>
+            <h2>Ім'я:</h2><p>{{ user_profile.last_name }}</p>
+            <h2>Email:</h2><p>{{ user_profile.email }}</p>
+            <h2>Дата народження:</h2><p>{{ user_profile.birth_date }}</p>
+            <h2>Телефон:</h2><p>{{ user_profile.phone }}</p>
+            <a href="{% url 'edit' %}" class="btn btn-primary">Edit Info</a>
+        </div>
+    </div>
+
+    <div class="container mt-3" style="width: 40%;">
+        <div style="flex: 1;border: 1px solid black; padding: 50px;">
+            <div style="display: flex;justify-content:center;align-items:center;background-color: black; color: white">
+                <h2>ShopCard</h2>
+                <img src="{% static 'shop/images/class/shop.png' %}" alt="shopcard" class="img-fluid" style="max-width: 70px;">
+            </div>
+            {% for one_shop_card in shop_card %}
+                <div class="card-body">
+                    {% if shop_card %}
+                        <p>Product Name: {{ one_shop_card.product_name }}</p>
+                        <p>Product Price: {{ one_shop_card.product_price }}</p>
+                        <!-- Render user_profile as a hidden input field -->
+                        <input type="hidden" name="user_profile" value="{{ user_profile.id }}">
+                        <!-- Render other fields from the form -->
+                    <div style="display:flex">
+                        <form method="post" action="{% url 'create_order' %}" class="form-inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="shop_card_id" value="{{ one_shop_card.id }}">
+                            {{ order_form.as_p }}
+                            <input name="product_amount" type="text" value="{{ one_shop_card.product_amount }}" class="form-control mr-2">
+                            <label for="address" class="mr-2">Address:</label>
+                            <input name="address" type="text" value="{{ order.address }}" class="form-control mr-2">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                        <form method="post" action="{% url 'delete_card' %}" class="form-inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="shop_card_id" value="{{ one_shop_card.id }}">
+                            <button type="submit" class="btn btn-danger ml-2">Delete</button>
+                        </form>
+                    </div>
+                    {% else %}
+                        <p>No ShopCard found</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <div class="card-footer text-center">
+                <p>Overall Total Price: </p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Right container  -->
+    <div style="flex: 1;border: 1px solid black; padding: 50px;background-color: black; color: white">
+        <div style="display: flex;justify-content:center;align-items:center;background-color: white; color: black">
+            <h2>Orders</h2>
+        </div>
+        <div style="padding-top: 20px;border: 1px solid white;padding: 10px">
+            {% if user_profile.orders.all %}
+                {% for order in user_profile.orders.all %}
+                    <p>Order ID: {{ order.id }}</p>
+                    <p>Order Date: {{ order.order_date }}</p>
+                    <p>Order Items:</p>
+                    <ul>
+                        {% for product_name in order.item_names|split_comma %}
+                            <li>
+                                <p>Product Name: {{ product_name }}</p>
+                                <p>Product Amount: {{ order.product_amount }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <p>Total Price: {{ order.total_price }}</p>
+                    {% if order.is_completed %}
+                        <p>Status: Completed</p>
+                    {% else %}
+                        <p>Status: Виконується</p>
+                    {% endif %}
+                    <p>Address: {{ order.address }} </p>
+                    <hr style="background-color: white">
+                {% endfor %}
+            {% else %}
+                <p>No orders found</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% else %}
+    <div class="container" style="text-align: center;">
+        <p>No profile found</p>
+    </div>
+{% endif %}
+  <!-- FOOTER -->
+{% include 'shop/footer.html' %}
+
+     <!-- SCRIPTS -->
+     <script src="{% static 'shop/js/jquery.min.js' %}"></script>
+     <script src="{% static 'shop/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'shop/js/aos.js' %}"></script>
+     <script src="{% static 'shop/js/smoothscroll.js' %}"></script>
+     <script src="{% static 'shop/js/custom.js' %}"></script>
+
+</body>
+</html>

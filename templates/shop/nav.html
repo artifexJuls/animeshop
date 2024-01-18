@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg fixed-top" style="position: fixed; top: 0; width: 100%; z-index: 1000;">
+        <div class="container">
+
+            <a class="navbar-brand" href="{% url 'index' %}">Heaven</a>
+
+            <button class="navbar-toggler" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-lg-auto">
+                    <li class="nav-item">
+                        <a href="{% url 'index' %}" class="nav-link smoothScroll">Головна</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'clothes' %}" class="nav-link smoothScroll">Асортимент</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'about' %}" class="nav-link smoothScroll">Про нас</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'contacts' %}" class="nav-link smoothScroll">Контакти</a>
+                    </li>
+                </ul>
+
+                <ul class="social-icon ml-lg-3" style="padding-left:19px">
+                    <li><a href="#" class="fa fa-facebook"></a></li>
+                    <li><a href="#" class="fa fa-twitter"></a></li>
+                    <li><a href="#" class="fa fa-instagram"></a></li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="login">
+                <ul class="navbar-nav ml-lg-auto">
+                    {% include 'shop/toggle_login.html' %}
+                </ul>
+            </div>
+        </div>
+</nav>

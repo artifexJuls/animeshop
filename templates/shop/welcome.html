@@ -1,0 +1,13 @@
+{% if user.is_authenticated %}
+    <div class="navbar-form navbar-right">
+        <h2 class="mb-3 text-white" data-aos="fade-up">Привіт, {{ user.username }}</h2>
+        <a href="{% url 'clothes' %}" class="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="700">Час купляти новий шмот!</a>
+    </div>
+{% else %}
+<h2 class="mb-3 text-white" data-aos="fade-up">Перший раз з нами?</h2>
+
+<h6 class="mb-4 text-white" data-aos="fade-up">Реєструйся на сайті та отримуй знижки!</h6>
+<form class="navbar-form navbar-right" method="POST" role="form" action="{% url 'blog_login' %}">
+    <a href="{% url 'signup' %}" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300">Створити акаунт</a>
+</form>
+{% endif %}

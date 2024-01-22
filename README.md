@@ -1,2 +1,2 @@
 # animeshop
-Site project. Django course.
+Site project. Graduate work based on Django course.

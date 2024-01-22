@@ -7,12 +7,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body class="bg-light">
-    <div class="container mt-5">
+    <div class="container mt-5" style="padding-top:10%">
         <div class="text-center">
-            <h1 class="display-4">Помилка</h1>
-            <p class="lead">Вибачте, відбулась помилка</p>
-            <p class="lead">Поверніться на головну сторінку та спробуйте знову</p>
-            <a href="{% url 'index' %}" class="btn btn-primary">Головна</a>
+            <h1 class="display-4" style="background-color:brown;color:white;width:50%;margin:auto;padding:10px">Помилка</h1>
+            <p class="text-danger" style="background-color:black;width:50%;margin:auto;padding:10px"><b> Не вірний логін або пароль.</b></p>
+            <p style="padding-top:10px" class="lead">Поверніться на <a href="{% url 'index' %}" class="btn btn-primary">головну</a> сторінку та спробуйте знову</p>
         </div>
     </div>
 

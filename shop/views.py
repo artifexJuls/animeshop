@@ -10,25 +10,7 @@ from shop.models import Clothes, Tags, UserProfile, ShopCard, Registration, Orde
 
 
 def index(request):
-    global todaysDay
-    day = time.localtime().tm_wday
-    if day == 1:
-            todaysDay = "понеділок"
-    elif day == 2:
-            todaysDay = "вівторок"
-    elif day == 3:
-            todaysDay = "середа"
-    elif day == 4:
-            todaysDay = "четвер"
-    elif day == 5:
-            todaysDay = "п'ятниця"
-    elif day == 6:
-            todaysDay = "субота"
-    elif day == 7:
-        todaysDay = "неділя"
-    date = datetime.date.today()
-    context = {'time':todaysDay,'day':time.strftime("%Y-%m-%d")}
-    return render(request, 'shop/index.html', context = context)
+    return render(request, 'shop/index.html')
 
 
 def about(request):
